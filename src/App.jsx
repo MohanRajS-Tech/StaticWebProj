@@ -1,7 +1,6 @@
 
-import TimelineCard from "./components/TimelineCard";
+import { Chrono } from "react-chrono";
 
-// The 11 stages of the data life journey
 const STAGES = [
   {
     title: "Data Generation",
@@ -83,6 +82,18 @@ const STAGES = [
 ];
 
 export default function App() {
+  const items = STAGES.map(stage => ({
+    title: stage.title,
+    cardSubtitle: stage.subtitle,
+    cardDetailedText: stage.detail,
+    media: {
+      type: "IMAGE",
+      source: {
+        url: stage.gifUrl
+      }
+    }
+  }));
+
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8 font-sans">
       <header className="text-center mb-12">
@@ -94,18 +105,28 @@ export default function App() {
         </p>
       </header>
 
-      {/* Main Timeline Container */}
-      <div className="relative max-w-4xl mx-auto">
-        {/* The central zig-zag line will be created with CSS */}
-        <div className="timeline-line"></div>
-
-        {STAGES.map((stage, index) => (
-          <TimelineCard
-            key={index}
-            alignment={index % 2 === 0 ? "left" : "right"}
-            {...stage}
-          />
-        ))}
+      <div style={{ width: "100%", height: "90vh" }}>
+        <Chrono
+          items={items}
+          mode="VERTICAL_ALTERNATING"
+          theme={{
+            primary: '#0ea5e9',
+            secondary: '#4b5563',
+            cardBgColor: '#1f2937',
+            cardForeColor: '#d1d5db',
+            titleColor: '#ffffff',
+            titleColorActive: '#ffffff',
+          }}
+          slideShow
+          slideItemDuration={3000}
+          scrollable={{ scrollbar: true }}
+          fontSizes={{
+            cardSubtitle: '0.85rem',
+            cardText: '0.8rem',
+            cardTitle: '1.2rem',
+            title: '1rem',
+          }}
+        />
       </div>
     </div>
   );
