@@ -1,6 +1,8 @@
 
 import { Chrono } from "react-chrono";
 import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 const STAGES = [
   {
@@ -82,7 +84,8 @@ export default function App() {
       timer = setInterval(() => {
         setActiveItemIndex(prevIndex => prevIndex + 1);
       }, 3000);
-    } else if (activeItemIndex === STAGES.length - 1) {
+    } else if (activeItemIndex === STAGES.length - 1 && isPlaying) {
+      // Reached the end, so stop playing
       setIsPlaying(false);
     }
     return () => clearInterval(timer);
@@ -102,7 +105,6 @@ export default function App() {
     }
   }, [activeItemIndex]);
 
-
   const items = STAGES.map(stage => ({
     title: stage.title,
     cardSubtitle: stage.subtitle,
@@ -115,13 +117,19 @@ export default function App() {
     }
   }));
 
-  const handlePlay = () => {
-    if (activeItemIndex === STAGES.length - 1) {
+  const togglePlay = () => {
+    // If we are at the end, and we press play again, restart from the beginning.
+    if (!isPlaying && activeItemIndex === STAGES.length - 1) {
       setActiveItemIndex(0);
       setIsPlaying(true);
     } else {
-      setIsPlaying(true);
+      setIsPlaying(!isPlaying);
     }
+  };
+  
+  const handleCardClick = (item, index) => {
+    setActiveItemIndex(index);
+    setIsPlaying(false); // Stop the tour on manual interaction
   }
 
   return (
@@ -130,14 +138,13 @@ export default function App() {
         <h1 className="text-5xl font-bold text-gray-100">The Life Journey of Data</h1>
         <p className="text-lg text-gray-400 mt-2">From a single bit to actionable insight, follow the path.</p>
         <div className="absolute top-1/2 -translate-y-1/2 left-8">
-            <button 
-                onClick={handlePlay}
-                disabled={isPlaying}
-                className="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-full shadow-lg disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors duration-300"
-                aria-label="Play Slideshow"
-            >
-                Play
-            </button>
+          <Button
+            variant="contained"
+            startIcon={<PlayArrowIcon />}
+            onClick={togglePlay}
+          >
+            Begin Tour
+          </Button>
         </div>
       </header>
 
@@ -146,7 +153,7 @@ export default function App() {
           items={items}
           mode="VERTICAL_ALTERNATING"
           activeItemIndex={activeItemIndex}
-          onActiveItemChange={setActiveItemIndex}
+          onCardClick={handleCardClick}
           disableToolbar
           theme={{
             primary: '#0ea5e9',
