@@ -6,9 +6,3 @@ body {
   background-color: #111827; /* bg-gray-900 */
   font-family: 'Inter', sans-serif;
 }
-
-/* Hide all toolbar buttons except the slideshow controller */
-#react-chrono-timeline nav button:not(:nth-child(4)) {
-  display: none;
-}
-

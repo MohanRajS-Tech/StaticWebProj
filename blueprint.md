@@ -16,19 +16,19 @@ This document outlines the design, features, and implementation plan for a dynam
     *   **Layout:** A zig-zag pattern for the timeline to create a visually balanced and dynamic flow, ensuring the application is engaging on both desktop and mobile.
 *   **Accessibility:** The application will adhere to a11y standards, ensuring it is usable by a wide range of users.
 
-## Current Implementation Plan
+## New Feature Plan: Automated Presentation Mode
 
-### Task: Expand and Enhance the Timeline
+To create a more guided and presentation-like experience, we will implement an automated scrolling feature. This will be controlled by a simple "Play" button, allowing users to watch the timeline unfold automatically.
 
-The goal is to transform the existing 5-step timeline into a more detailed and immersive 11-stage journey. This will create a more visually appealing and informative experience.
+### Implementation Steps:
 
-#### Steps:
+1.  **Add a "Play" Button:**
+    *   A single "Play" button will be added to the top-left of the page, near the main title.
 
-1.  **Expand Timeline Stages:** Increase the number of stages from five to eleven to provide a more granular and comprehensive view of the data lifecycle.
-2.  **Enrich Content:** Update the `title`, `subtitle`, and `detail` for each stage to be more descriptive and engaging.
-3.  **Integrate Visual Media:** Add a relevant GIF (`gifUrl`) to each of the eleven stages. This will make the timeline more dynamic and contribute to a longer, more immersive scrolling experience.
-4.  **Implement Zig-Zag Layout:**
-    *   Modify `App.jsx` to alternate the `alignment` of `TimelineCard` components.
-    *   Update `TimelineCard.jsx` to dynamically render on the left or right based on the `alignment` prop.
-    *   Add an `<img>` tag to display the GIF within the card.
-5.  **Create Zig-Zag Connector:** Replace the straight vertical line in `src/index.css` with a visually appealing SVG zig-zag pattern to connect the timeline cards.
+2.  **Implement Automated Scrolling:**
+    *   **State Management:** The application will use React's `useState` and `useEffect` hooks to manage the `activeItemIndex`.
+    *   **Timed Progression:** When "Play" is clicked, a `setInterval` will advance the `activeItemIndex` every 3 seconds.
+    *   **Scrolling into View (Robust Method):** A `useEffect` hook will listen for changes to `activeItemIndex`.
+        *   When the index changes, this effect will use `document.querySelectorAll('.vertical-item-row')` to get a list of all timeline items.
+        *   It will then select the specific element from that list using the `activeItemIndex` (e.g., `items[activeItemIndex]`). This is more reliable than waiting for a specific CSS class.
+        *   It will then call the standard browser `element.scrollIntoView({ behavior: 'smooth', block: 'center' })` method on the selected element.
