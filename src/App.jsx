@@ -3,6 +3,7 @@ import { Chrono } from "react-chrono";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import "./Chrono.css";
 
 const STAGES = [
   {
@@ -91,14 +92,23 @@ export default function App() {
     return () => clearInterval(timer);
   }, [isPlaying, activeItemIndex]);
 
-  // Effect to scroll the active item into view
+  // Effect to scroll the active item into view and manage active class
   useEffect(() => {
+    // First, find all card elements
+    const allCards = document.querySelectorAll('.vertical-item-row');
+
+    // Remove the 'active' class from all of them
+    allCards.forEach(card => card.classList.remove('active'));
+
+    // If there's no active index, we're done.
     if (activeItemIndex === null) return;
 
-    const allCards = document.querySelectorAll('.vertical-item-row');
     const activeCard = allCards[activeItemIndex];
-
     if (activeCard) {
+      // Add the active class to the correct card
+      activeCard.classList.add('active');
+
+      // Scroll it into view
       activeCard.scrollIntoView({
         behavior: "smooth",
         block: "center",

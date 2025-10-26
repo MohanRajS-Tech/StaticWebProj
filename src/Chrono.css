@@ -1,0 +1,23 @@
+/* Custom styles for React-Chrono */
+
+/*
+  By default, all timeline cards are semi-transparent.
+  This makes the active card stand out more.
+*/
+.vertical-item-row {
+  opacity: 0.5;
+  transition: opacity 300ms ease-in-out;
+}
+
+/*
+  The 'active' class is added by React-Chrono to the currently active item.
+  We make it fully opaque and add a "glow" effect using box-shadow.
+*/
+.vertical-item-row.active {
+  opacity: 1;
+}
+
+.vertical-item-row.active .card-content {
+    box-shadow: 0 0 20px 5px rgba(14, 165, 233, 0.4);
+    border: 1px solid rgba(14, 165, 233, 0.5);
+}
