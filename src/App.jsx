@@ -75,7 +75,7 @@ const STAGES = [
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
+  const [activeItemIndex, setActiveItemIndex] = useState(null);
 
   // Effect to run the slideshow
   useEffect(() => {
@@ -93,6 +93,8 @@ export default function App() {
 
   // Effect to scroll the active item into view
   useEffect(() => {
+    if (activeItemIndex === null) return;
+
     const allCards = document.querySelectorAll('.vertical-item-row');
     const activeCard = allCards[activeItemIndex];
 
@@ -118,11 +120,19 @@ export default function App() {
   }));
 
   const togglePlay = () => {
-    // If we are at the end, and we press play again, restart from the beginning.
+    // If the tour hasn't started yet (first click), begin from the first item.
+    if (activeItemIndex === null) {
+      setActiveItemIndex(0);
+      setIsPlaying(true);
+      return;
+    }
+
+    // If we are at the end and we press play again, restart from the beginning.
     if (!isPlaying && activeItemIndex === STAGES.length - 1) {
       setActiveItemIndex(0);
       setIsPlaying(true);
     } else {
+      // Otherwise, just toggle the playing state (pause/resume).
       setIsPlaying(!isPlaying);
     }
   };
