@@ -1,4 +1,3 @@
-
 # Project Blueprint: The Life Journey of Data
 
 ## Overview
@@ -12,23 +11,19 @@ This document outlines the design, features, and implementation plan for a dynam
 *   **Visual Style:**
     *   **Aesthetics:** A clean, modern design with a professional yet vibrant color palette.
     *   **Typography:** Clear and expressive fonts to guide the user's attention.
-    *   **Iconography & Imagery:** Relevant GIFs are used for each stage to make the content more engaging and illustrative.
+    *   **Iconography & Imagery:** High-quality, relevant, and free-to-use images are used for each stage to make the content more engaging and illustrative.
     *   **Layout:** A zig-zag pattern for the timeline to create a visually balanced and dynamic flow, ensuring the application is engaging on both desktop and mobile.
 *   **Accessibility:** The application will adhere to a11y standards, ensuring it is usable by a wide range of users.
 
-## New Feature Plan: Automated Presentation Mode
+## New Feature Plan: AI-Generated Images
 
-To create a more guided and presentation-like experience, we will implement an automated scrolling feature. This will be controlled by a simple "Play" button, allowing users to watch the timeline unfold automatically.
+To create a unique and consistent visual identity, we will replace the placeholder images with AI-generated images. This will provide a more professional and branded look and feel.
 
 ### Implementation Steps:
 
-1.  **Add a "Play" Button:**
-    *   A single "Play" button will be added to the top-left of the page, near the main title.
-
-2.  **Implement Automated Scrolling:**
-    *   **State Management:** The application will use React's `useState` and `useEffect` hooks to manage the `activeItemIndex`.
-    *   **Timed Progression:** When "Play" is clicked, a `setInterval` will advance the `activeItemIndex` every 3 seconds.
-    *   **Scrolling into View (Robust Method):** A `useEffect` hook will listen for changes to `activeItemIndex`.
-        *   When the index changes, this effect will use `document.querySelectorAll('.vertical-item-row')` to get a list of all timeline items.
-        *   It will then select the specific element from that list using the `activeItemIndex` (e.g., `items[activeItemIndex]`). This is more reliable than waiting for a specific CSS class.
-        *   It will then call the standard browser `element.scrollIntoView({ behavior: 'smooth', block: 'center' })` method on the selected element.
+1.  **Define a JSON Prompt Schema:** Establish a clear JSON structure for consistency and control over the image generation.
+2.  **Create 11 JSON Prompts:** Write a specific, detailed JSON prompt for each of the 11 timeline stages.
+3.  **Generate 11 Images:** Use the 11 structured JSON prompts to generate a full set of stylistically consistent images.
+4.  **Store Images:** Create the `src/assets/images` directory and save all 11 generated images there.
+5.  **Integrate into App:** Modify the `timelineData` array in `src/App.jsx`. Replace the `media` object with the new local image paths.
+6.  **Update Blueprint:** Update `blueprint.md` to reflect the change from placeholder images to a sophisticated, AI-driven local image pipeline for all 11 stages.

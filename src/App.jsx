@@ -4,73 +4,85 @@ import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import "./Chrono.css";
+import stage1 from './assets/images/Stage 1 Data Generation.png';
+import stage2 from './assets/images/Stage 2 Data Ingestion.png';
+import stage3 from './assets/images/Stage 3 Secure Transmission.png';
+import stage4 from './assets/images/Stage 4 Processing & Cleaning.png';
+import stage5 from './assets/images/Stage 5 Data Storage.png';
+import stage6 from './assets/images/Stage 6 Data Analysis.png';
+import stage7 from './assets/images/Stage 7 Machine Learning.png';
+import stage8 from './assets/images/Stage 8 Data Visualization.png';
+import stage9 from './assets/images/Stage 9 Insight & Decision.png';
+import stage10 from './assets/images/Stage 10 Action & Automation.png';
+import stage11 from './assets/images/Stage 11 Archival & Deletion.png';
+
 
 const STAGES = [
   {
     title: "Data Generation",
     subtitle: "The Spark of Information",
     detail: "Every click, tap, and sensor reading creates a new data point, forming the initial spark in the data lifecycle.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG9jZzVsdDU1enE5NnI1d2s5d3J1dDR4N3g2YjJtdWZweWJtZ2wzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKSjRrfIPjeiVyE/giphy.gif",
+    gifUrl: stage1,
   },
   {
     title: "Data Ingestion",
     subtitle: "Collecting the Raw Fuel",
     detail: "Data is gathered from diverse sources—like apps, IoT devices, and logs—and brought into a central staging area.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDV2b3N3eDFhaTdvaHZqOHg5NDFmM3NiaTk3bnZ1cWdtaWd3YmZxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPEqDGUULpEU0aQ/giphy.gif",
+    gifUrl: stage2,
   },
   {
     title: "Secure Transmission",
     subtitle: "The Armored Convoy",
     detail: "Data is encrypted and securely moved from its source to the processing environment, protecting it from interception.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW5yMmI5eXo4eDN0cW5hZDY4cjd2bHljZ3R2ZHNpZzBmbzF6ZG55aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l4Epg2qsY3s533SLe/giphy.gif",
+    gifUrl: stage3,
   },
   {
     title: "Processing & Cleaning",
     subtitle: "Refining the Raw Material",
     detail: "Raw data is transformed, standardized, and cleansed of errors to ensure it's accurate and ready for analysis.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGFkcmJpZGdqZnh6dGRuNWM1dGlzZGFubndjY3pkaWxudWk2ZzAyZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LdOyjZ7io5Msw/giphy.gif",
+    gifUrl: stage4,
   },
   {
     title: "Data Storage",
     subtitle: "The Digital Vault",
     detail: "Processed data is stored in a secure, scalable, and reliable database or data warehouse for future access.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTN2bjBxa2N3eXJ3dWIzZXNqZ3Zub3libGJ5aDZna293aGZzODYydiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPnA0I7b6p3l_5m/giphy.gif",
+    gifUrl: stage5,
   },
   {
     title: "Data Analysis",
     subtitle: "Uncovering Hidden Patterns",
     detail: "Analysts and data scientists query the data, looking for trends, correlations, and insights that can drive decisions.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hveGRoY2I1dXljYjRicXZ1dDl3a25yOWhjbjZtdHUweWh0bWE5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7btNqJj2tQ6pAW2Y/giphy.gif",
+    gifUrl: stage6,
   },
   {
     title: "Machine Learning",
     subtitle: "Teaching the Data to Predict",
     detail: "Algorithms are trained on the data to create models that can forecast future outcomes and identify anomalies.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2s0Y2I1bnFtaTlibjFic2x0MGFyNnA4aHIwZzlxMDR0NndrbHM0biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l2Jd8K0Lg3ie2M9DW/giphy.gif",
+    gifUrl: stage7,
   },
   {
     title: "Data Visualization",
     subtitle: "Telling the Story with a Chart",
     detail: "Insights are transformed into charts, graphs, and dashboards, making complex information easy to understand.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWY0cmNjdjlna2R1aDFoZWdocDh0dHNjM3Y3eHhpcHIxMnJ6dDB0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aD1zsNc2j623e4U/giphy.gif",
+    gifUrl: stage8,
   },
   {
     title: "Insight & Decision",
     subtitle: "The Moment of Clarity",
     detail: "Stakeholders use the visualized data to make informed, data-driven decisions that shape business strategy.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWNsdG00ZHM1Mmc3c3R4ZDRtb2N0cDZ1ZjRwbXB5cGo3eHV2c2M0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d3mlE7uhX8KFgEmY/giphy.gif",
+    gifUrl: stage9,
   },
   {
     title: "Action & Automation",
     subtitle: "Putting Insights to Work",
     detail: "Decisions trigger automated actions, such as sending alerts, adjusting system parameters, or launching new processes.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHhpdGo1b2J2ZnJ3eW80ajgwbjZ0enRjMTAxY2NmeGpna2ZqZzFkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s6aV1uQ1K222s/giphy.gif",
+    gifUrl: stage10,
   },
   {
     title: "Archival & Deletion",
     subtitle: "The End of the Line",
     detail: "Data that is no longer needed is securely archived for compliance or permanently deleted to manage storage costs.",
-    gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGY5NjZtY3RtcTNqa2Z2N2xkaGdpZWxybDBjNnR6bm5tcnFmN2o2eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT1XGGfuI0wd3mk1fa/giphy.gif",
+    gifUrl: stage11,
   },
 ];
 
