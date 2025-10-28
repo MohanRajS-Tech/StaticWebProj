@@ -1,6 +1,6 @@
 /* Custom styles for React-Chrono */
 
-.vertical-item-row .card-content {
-    box-shadow: 0 0 20px 5px rgba(14, 165, 233, 0.4);
-    border: 1px solid rgba(14, 165, 233, 0.5);
+.timeline-card-content.active {
+    box-shadow: 0 0 20px 5px rgba(192, 192, 192, 0.5);
+    border: 2px solid silver;
 }
