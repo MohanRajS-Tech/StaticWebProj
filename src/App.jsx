@@ -112,6 +112,14 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeItemIndex, setActiveItemIndex] = useState(null);
 
+  // Effect to preload images
+  useEffect(() => {
+    STAGES.forEach(stage => {
+      const img = new Image();
+      img.src = stage.gifUrl;
+    });
+  }, []);
+
   // Effect to run the slideshow
   useEffect(() => {
     let timer;
