@@ -1,16 +1,51 @@
-# React + Vite
+# The Life Journey of Data: An Interactive Timeline
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a visually engaging and interactive timeline that illustrates the lifecycle of data, from generation to archival. It's built with React and Tailwind CSS, providing a modern and responsive user experience.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can view the live application here: [https://datajourney001-f4210.web.app](https://datajourney001-f4210.web.app)
 
-## React Compiler
+## About The Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This application was created to provide an intuitive and beautiful way to understand the various stages that data goes through. It serves as both an educational tool and a showcase of modern web development practices.
 
-## Expanding the ESLint configuration
+### Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*   **Interactive Timeline:** A vertical timeline that guides the user through the 11 stages of the data lifecycle.
+*   **Engaging Visuals:** Each stage is accompanied by a unique, AI-generated image that captures the essence of that stage.
+*   **Responsive Design:** The application is fully responsive and works seamlessly on both desktop and mobile devices.
+*   **Modern Tech Stack:** Built with React, Vite, and Tailwind CSS for a fast and efficient development experience.
+*   **Accessibility:** Designed with accessibility in mind to ensure it's usable by a wide audience.
+
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+*   npm
+    ```sh
+    npm install npm@latest -g
+    ```
+
+### Installation
+
+1.  Clone the repo
+    ```sh
+    git clone https://github.com/your_username_/Project-Name.git
+    ```
+2.  Install NPM packages
+    ```sh
+    npm install
+    ```
+3.  Run the development server
+    ```sh
+    npm run dev
+    ```
+
+## Technologies Used
+
+*   [React](https://reactjs.org/)
+*   [Vite](https://vitejs.dev/)
+*   [Tailwind CSS](https://tailwindcss.com/)
